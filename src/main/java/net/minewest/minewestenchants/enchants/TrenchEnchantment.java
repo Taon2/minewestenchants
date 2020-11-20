@@ -57,7 +57,7 @@ public class TrenchEnchantment extends BaseEnchantment {
         if (event instanceof TrenchEnchantment.TrenchBlockBreakEvent) return;
 
         ItemStack item = event.getPlayer().getInventory().getItemInHand();
-        if (item == null || EnchantmentManager.getInstance().getEnchantmentLevel(item, EnchantmentManager.TRENCH) <= 0) return;
+        if (EnchantmentManager.getInstance().getEnchantmentLevel(item, EnchantmentManager.TRENCH) <= 0) return;
         if (!lastClickedBlockface.containsKey(event.getPlayer().getUniqueId())) return;
 
         Block block = event.getBlock();
@@ -67,7 +67,13 @@ public class TrenchEnchantment extends BaseEnchantment {
 
         BlockVector bv = block.getLocation().toVector().toBlockVector();
         World world = block.getWorld();
-        int radius = 2;
+        int radius;
+
+        if (EnchantmentManager.getInstance().getEnchantmentLevel(item, EnchantmentManager.TRENCH) == 1)
+            radius = 2;
+        else
+            radius = 3;
+
         int i, j, k;
 
         BlockFace lastBlockFace = lastClickedBlockface.get(event.getPlayer().getUniqueId());
@@ -151,7 +157,7 @@ public class TrenchEnchantment extends BaseEnchantment {
                 ChatColor.WHITE + "from where you mined.",
                 ChatColor.WHITE + "",
                 ChatColor.DARK_PURPLE + "Attaches to Pickaxes and Shovels.",
-                ChatColor.DARK_PURPLE + "Max Level: " + this.getMaxLevel()
+                ChatColor.DARK_PURPLE + "Max Level: " + EnchantmentManager.getInstance().getRomanNumerals(this.getMaxLevel())
         );
     }
 }

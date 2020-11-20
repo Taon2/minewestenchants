@@ -1,0 +1,5 @@
+generator:
+  world: 'world_s3'
+  x: -20
+  y: 86
+  z: -72

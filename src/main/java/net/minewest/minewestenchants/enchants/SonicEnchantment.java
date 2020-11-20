@@ -102,7 +102,7 @@ public class SonicEnchantment extends BaseEnchantment {
                 ChatColor.WHITE + "Constant Speed.",
                 ChatColor.WHITE + "",
                 ChatColor.DARK_PURPLE + "Attaches to Boots.",
-                ChatColor.DARK_PURPLE + "Max Level: " + this.getMaxLevel()
+                ChatColor.DARK_PURPLE + "Max Level: " + EnchantmentManager.getInstance().getRomanNumerals(this.getMaxLevel())
         );
     }
 }

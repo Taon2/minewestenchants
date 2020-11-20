@@ -1,8 +1,9 @@
-name: MinewestEchants
+name: MinewestEnchants
 main: net.minewest.minewestenchants.MinewestEnchantsPlugin
 authors: [Taon2]
-version: 1.0.0
+version: 1.1.0
 api-version: 1.16
+
 commands:
   enchantedbook:
     description: Gives the user a custom enchanted book.

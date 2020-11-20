@@ -100,7 +100,7 @@ public class NightsEyeEnchantment extends BaseEnchantment {
                 ChatColor.WHITE + "Constant Night Vision.",
                 ChatColor.WHITE + "",
                 ChatColor.DARK_PURPLE + "Attaches to Helmets.",
-                ChatColor.DARK_PURPLE + "Max Level: " + this.getMaxLevel()
+                ChatColor.DARK_PURPLE + "Max Level: " + EnchantmentManager.getInstance().getRomanNumerals(this.getMaxLevel())
         );
     }
 }

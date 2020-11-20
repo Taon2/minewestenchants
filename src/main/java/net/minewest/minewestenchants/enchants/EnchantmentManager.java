@@ -29,7 +29,6 @@ public class EnchantmentManager implements Listener {
     public static final Enchantment SONIC = new SonicEnchantment();
     public static final Enchantment TRENCH = new TrenchEnchantment();
 
-
     private static EnchantmentManager enchantmentManager;
     private Map<String, Enchantment> map = new HashMap<>();
     public static final String MAGIC = "§1§2§3§7";
@@ -49,8 +48,10 @@ public class EnchantmentManager implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = HIGH)
     public void on(InventoryClickEvent event) {
-        if (event.getClickedInventory() == null) return;
-        if (getCustomEnchants(event.getCurrentItem()).size() != 0 || (event.getCurrentItem().getType().equals(Material.ENCHANTED_BOOK) && ((EnchantmentStorageMeta) event.getCurrentItem().getItemMeta()).getStoredEnchants().size() != 0))
+        if (event.getClickedInventory() == null || event.getCurrentItem() == null) return;
+        if (getCustomEnchants(event.getCurrentItem()).size() != 0
+                || (event.getCurrentItem().getType().equals(Material.ENCHANTED_BOOK)
+                && ((EnchantmentStorageMeta) event.getCurrentItem().getItemMeta()).getStoredEnchants().size() != 0))
             reformat(event.getCurrentItem());
     }
 
@@ -211,6 +212,8 @@ public class EnchantmentManager implements Listener {
             String line = ChatColor.stripColor(s);
 
             for (Enchantment enchantment : map.values()) {
+                if (line.lastIndexOf(" ") == -1) continue;
+
                 if (line.substring(0, line.lastIndexOf(" ")).equals(enchantment.getName())) {
                     int level = getNumFromRoman(line.substring(line.lastIndexOf(" ") + 1));
 
@@ -240,10 +243,10 @@ public class EnchantmentManager implements Listener {
         return 0;
     }
 
-    public Object getEnchantmentByName(String name) {
+    public Enchantment getEnchantmentByName(String name) {
         Enchantment customEnchant = map.getOrDefault(name.toUpperCase(), null);
 
-        return customEnchant == null ? org.bukkit.enchantments.Enchantment.getByName(name) : customEnchant;
+        return customEnchant;
     }
 
     public boolean customEnchant(ItemStack itemStack, Map<Enchantment, Integer> enchants) {

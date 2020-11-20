@@ -41,7 +41,7 @@ public class ExperiencedEnchantment extends BaseEnchantment {
                 ChatColor.WHITE + "25% per enchantment level.",
                 ChatColor.WHITE + "",
                 ChatColor.DARK_PURPLE + "Attaches to Swords.",
-                ChatColor.DARK_PURPLE + "Max Level: " + this.getMaxLevel()
+                ChatColor.DARK_PURPLE + "Max Level: " + EnchantmentManager.getInstance().getRomanNumerals(this.getMaxLevel())
         );
     }
 }

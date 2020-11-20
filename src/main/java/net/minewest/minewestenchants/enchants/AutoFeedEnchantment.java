@@ -66,7 +66,7 @@ public class AutoFeedEnchantment extends BaseEnchantment {
                 ChatColor.WHITE + "Feeds you as you move around.",
                 ChatColor.WHITE + "",
                 ChatColor.DARK_PURPLE + "Attaches to Helmets.",
-                ChatColor.DARK_PURPLE + "Max Level: " + this.getMaxLevel()
+                ChatColor.DARK_PURPLE + "Max Level: " + EnchantmentManager.getInstance().getRomanNumerals(this.getMaxLevel())
         );
     }
 }
